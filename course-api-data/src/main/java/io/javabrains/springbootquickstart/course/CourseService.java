@@ -1,4 +1,4 @@
-package io.javabrains.springbootquickstart.topic;
+package io.javabrains.springbootquickstart.course;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,37 +8,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TopicService {
+public class CourseService {
 
 	@Autowired
-	private TopicRepository topicRepository;
+	private CourseRepository topicRepository;
 	
-	private List<Topic> topics=new ArrayList<>(Arrays.asList(
-			new Topic("springData", "Spring Framework ", "Spring Framework Description"),
-			new Topic("java", "Core Java", "Core Java Description"),
-			new Topic("javasctipt", "JavaSctipt", "Spring Framework Description")
+	private List<Course> topics=new ArrayList<>(Arrays.asList(
+			new Course("springData", "Spring Framework ", "Spring Framework Description"),
+			new Course("java", "Core Java", "Core Java Description"),
+			new Course("javasctipt", "JavaSctipt", "Spring Framework Description")
 			));
 	
-	public List<Topic> getAllTopics(){
+	public List<Course> getAllTopics(){
 		//return topics;
-		List<Topic> topics=new ArrayList<>();
+		List<Course> topics=new ArrayList<>();
 		topicRepository.findAll()
 		.forEach(topics::add);//Java 8 Lamda Basic
 		return topics;
 	}
-	public Topic getTopic(String id) {
+	public Course getTopic(String id) {
 			return topics.stream().filter(t->t.getId().equals(id)).findFirst().get();
 		}
 	
-	public void addTopic(Topic topic) {
+	public void addTopic(Course topic) {
 		// TODO Auto-generated method stub
 		//topics.add(topic);
 		topicRepository.save(topic);
 	}
-	public void updateTopic(String id, Topic topic) {
+	public void updateTopic(String id, Course topic) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < topics.size(); i++) {
-			Topic t=topics.get(i);
+			Course t=topics.get(i);
 			if(t.getId().equals(id)) {
 				topics.set(i, topic);
 				return;
